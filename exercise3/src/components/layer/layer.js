@@ -1,6 +1,9 @@
 // import tpl from './layer.html';
+import tpl from './layer.tpl';
 
-function layer() {
+import './layer.less';
+
+function Layer() {
     console.log('test......');
     return {
         name: 'layer',
@@ -8,4 +11,4 @@ function layer() {
     }
 }
 
-export default layer;
+export default Layer;
