@@ -19,12 +19,25 @@ module.exports = {
             filename: 'index-[hash].html',
             template: 'index.html',
             inject: 'head', // false
-            title: 'webpack is good',
+            title: 'this is index.html',
             date: new Date(),
-            minify: {
+            /*minify: {
                 removeComments: true,
                 collapseWhitespace: true
-            }
+            },*/
+            chunks: ['index']
+        }),
+        new htmlWebpackPlugin({
+            filename: 'main-[hash].html',
+            template: 'index.html',
+            inject: 'head', // false
+            title: 'this is main.html',
+            date: new Date(),
+            /*minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            },*/
+            chunks: ['main']
         })
     ]
 };
