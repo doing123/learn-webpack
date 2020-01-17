@@ -1,5 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+// const cleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     // entry: ['./src/index.js', './src/main.js'],
@@ -15,6 +17,7 @@ module.exports = {
         publicPath: 'http://cdn.com/'
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new htmlWebpackPlugin({
             filename: 'index-[hash].html',
             template: 'index.html',
