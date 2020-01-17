@@ -1,13 +1,18 @@
-import printMe from './main';
+import { cube } from './math';
+
 import './styles.css';
 
-function hello(str) {
-  console.log(str);
+if (process.env.NODE_ENV !== 'production') {
+  console.log('in development mode');
 }
 
-if (module.hot) {
-  module.hot.accept('./main.js', function() {
-    console.log('Accepting the updated printMe module!');
-    printMe();
-  });
+function component() {
+  const ele = document.createElement('pre');
+  ele.innerHTML = ['hello webpack!', '5 cubed is equal to ' + cube(5)].join(
+    '\n\n'
+  );
+
+  return ele;
 }
+
+document.body.appendChild(component());
