@@ -17,6 +17,9 @@ module.exports = {
     filename: 'js/[name]-[chunkHash].js', // 只打包有改动的文件
     publicPath: './'
   },
+  devServer: {
+    contentBase: './dist'
+  },
   plugins: [
     new ManifestPlugin(),
     new CleanWebpackPlugin(),
