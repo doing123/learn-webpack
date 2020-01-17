@@ -2,6 +2,7 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var ManifestPlugin = require('webpack-manifest-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   // entry: ['./src/index.js', './src/main.js'],
@@ -13,19 +14,28 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     // filename: 'js/bundle.js'
-    // filename: 'js/[name]-[hash].js'
-    filename: 'js/[name]-[chunkHash].js', // 只打包有改动的文件
+    filename: 'js/[name]-[hash].js',
+    // filename: 'js/[name]-[chunkHash].js', // 只打包有改动的文件
     publicPath: '/'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    hot: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   },
   plugins: [
     new ManifestPlugin(),
     new CleanWebpackPlugin(),
     new htmlWebpackPlugin({
       filename: 'index.html',
-    //   filename: 'index-[hash].html',
+      //   filename: 'index-[hash].html',
       template: 'index.html',
       inject: 'head', // false
       title: 'this is index.html',
@@ -37,7 +47,7 @@ module.exports = {
       chunks: ['index']
     }),
     new htmlWebpackPlugin({
-    //   filename: 'main-[hash].html',
+      //   filename: 'main-[hash].html',
       filename: 'main.html',
       template: 'index.html',
       inject: 'head', // false
@@ -48,6 +58,8 @@ module.exports = {
                 collapseWhitespace: true
             },*/
       chunks: ['main']
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
