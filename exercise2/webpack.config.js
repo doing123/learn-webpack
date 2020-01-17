@@ -15,7 +15,7 @@ module.exports = {
     // filename: 'js/bundle.js'
     // filename: 'js/[name]-[hash].js'
     filename: 'js/[name]-[chunkHash].js', // 只打包有改动的文件
-    publicPath: './'
+    publicPath: '/'
   },
   devServer: {
     contentBase: './dist'
@@ -24,7 +24,8 @@ module.exports = {
     new ManifestPlugin(),
     new CleanWebpackPlugin(),
     new htmlWebpackPlugin({
-      filename: 'index-[hash].html',
+      filename: 'index.html',
+    //   filename: 'index-[hash].html',
       template: 'index.html',
       inject: 'head', // false
       title: 'this is index.html',
