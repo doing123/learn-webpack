@@ -1,8 +1,5 @@
-export default function printMe() {
-  console.log('I get called from print.js!');
-  console.error('I get called from print.js!');
-}
+import _ from 'lodash';
 
-setTimeout(() => {
-	printMe()
-}, 1000)
+console.log(
+  _.join(['Another', 'module', 'loaded!'], ' ')
+);
